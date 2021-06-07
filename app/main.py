@@ -21,8 +21,8 @@ def get_token():
 
 
 @app.route("/<int:id>")
-def get_post(postid):
-    if not postid:
+def get_post(id):
+    if not id:
         return "<p>the URL must contain the Post_ID</p>"
     x_guest_token = get_token()
     auth = "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
@@ -33,13 +33,13 @@ def get_post(postid):
                     }
 
     try:
-        req = requests.get('https://twitter.com/i/api/2/timeline/conversation/'+str(postid)+'.json', headers=headers_dict)
+        req = requests.get('https://twitter.com/i/api/2/timeline/conversation/'+str(id)+'.json', headers=headers_dict)
     except Exception as e:
         app.logger.error(str(e))
         return jsonify({"error_message": str(e)})
 
     j = req.json()
-    twitter_det = j["globalObjects"]['tweets'][str(postid)]
+    twitter_det = j["globalObjects"]['tweets'][str(id)]
     media = []
     if twitter_det['entities']:
         all_media = twitter_det['entities']['media']
