@@ -1,0 +1,14 @@
+<!doctype html>
+<body>
+    <h1> about the post</h1>
+    <p id="postText">post: {{postText}}</p>
+    <p id="media">
+        {% for e in media %}
+            <img src={{e}} width="400"
+            height="341">
+        {% endfor %}
+    </p>
+    <p id="likes">likse: {{likes}}</p>
+    <p id="tweetCount">tweets count: {{tweetCount}}</p>
+    <p id="created">tcreated at: {{created}}</p>
+</body>
